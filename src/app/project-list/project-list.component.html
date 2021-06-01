@@ -1,0 +1,33 @@
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="m-4">
+                        <button style="margin: 10px;" class="btn main-button" routerLink="../new">Nouveau Projet</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="m-4" style="display: flex;">
+                        <div class="m-2 project-box" *ngFor="let project of projects">
+                            <h2 (click)="onDelete(project)"  >{{project.title}}</h2>
+                            <p> {{project.description}} </p>
+                            <div class="list-group">
+                                <div class="list-group-item" *ngFor ="let task of project.tasks">
+                                    <h5 class="list-group-item-heading">
+                                        {{task.name}}
+                                    </h5>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+
