@@ -1,3 +1,7 @@
+import {Task} from './task.model'
 export class Project {
-    constructor(public title: string, public description: string, public tasks: any[]){}
+    tasks: Task[];
+    constructor(
+        public title: string, 
+        public description: string){}
 }
