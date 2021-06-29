@@ -9,10 +9,18 @@ import { ProjectService } from './services/project.service';
 import { NewProjectComponent } from './new-project/new-project.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { LogInComponent } from './auth/log-in/log-in.component';
+import { AuthGuard } from './guard/auth-guard';
 
 const appRoutes: Routes = [
-  {path: 'new', component: NewProjectComponent},
-  {path: 'projects', component: ProjectListComponent},
+  {path: 'new',canActivate: [AuthGuard], component: NewProjectComponent},
+  {path: 'projects',canActivate: [AuthGuard], component: ProjectListComponent},
+  {path: 'login', component: LogInComponent},
+  {path: 'signin', component: SignInComponent},
   {path: '',   redirectTo: '/projects', pathMatch: 'full'},
 ]
 
@@ -22,7 +30,12 @@ const appRoutes: Routes = [
     AppComponent,
     ProjectListComponent,
     HeaderComponent,
-    NewProjectComponent
+    NewProjectComponent,
+    SidebarComponent,
+    FooterComponent,
+    NavbarComponent,
+    SignInComponent,
+    LogInComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +44,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [ProjectService],
+  providers: [ProjectService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

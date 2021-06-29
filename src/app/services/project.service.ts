@@ -18,8 +18,8 @@ export class ProjectService {
       tasks: [
         {name:"this is a task", isComplete: false},
         {name:"this is a task", isComplete: true},
-        {name:"this is a task", isComplete: false},
-      ],
+        {name:"this is a task", isComplete: false}
+      ]
     },
     {
       title: "Test 2",
@@ -29,20 +29,11 @@ export class ProjectService {
         {name:"this also is a task", isComplete: false},
         {name:"this is a task", isComplete: false},
         {name:"this is a task", isComplete: false},
-        {name:"a task this is", isComplete: false},
+        {name:"a task this is", isComplete: false}
         
-      ],
+      ]
     },
-    {
-      title: "Hey you",
-      description: "Get out of my swamp",
-      tasks: [
-        {name:"Cut the onio", isComplete: false},
-        {name:"mmm delicious onio", isComplete: false},
-        {name:"this is a big onio", isComplete: false},
-        {name:"take out the trash", isComplete: false}, 
-      ],
-    },
+
   ];
   projectSubject = new Subject<Project[]>();
 
@@ -93,8 +84,9 @@ export class ProjectService {
 
   saveProject(project:Project[]){
     return new Promise((resolve, reject)=>{
+      console.log("Yooo  " + project);
       this.http.post(
-        'http://localhost:3000/api/post/',
+        'http://localhost:3000/api/posts/',
         {project: project}
       ).subscribe(
         (response) => {
@@ -107,4 +99,20 @@ export class ProjectService {
     })
   }
 
+  getStuff() {
+    this.http.get('http://localhost:3000/api/posts').subscribe(
+      (projects: Project[]) => {
+        if (projects) {
+          this.projects = projects;
+          this.emitProject();
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
 }
+
+

@@ -1,0 +1,16 @@
+<div class="col-sm-4 offset-sm-4 mt-2 p-2 border border-dark rounded bg-secondary text-light">
+    <h1>Se connecter</h1>
+    <form [formGroup]="loginForm">
+        <div class="form-group">
+          <label for="email">Adresse mail</label>
+          <input type="email" id="email" formControlName="email" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" formControlName="password" class="form-control">
+        </div>
+        <button class="btn btn-success border-dark mt-2" (click)="onLogin()" [disabled]="loginForm.invalid">Connexion</button>
+      </form>
+      <p>{{ errorMessage }}</p>
+    <p>Pas de compte? Créez-en un <a class="text-light" routerLink="../signin">ici</a></p>
+</div>

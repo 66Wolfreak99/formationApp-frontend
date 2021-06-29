@@ -1,0 +1,18 @@
+<div class="col-sm-4 offset-sm-4 mt-2 p-2 border border-dark rounded bg-secondary text-light" *ngIf="!loading">
+    <h1>Créer un compte</h1>
+    <form [formGroup]="signupForm">
+      <div class="form-group">
+        <label for="email">Adresse mail</label>
+        <input type="email" id="email" formControlName="email" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" formControlName="password" class="form-control">
+      </div>
+      <button class="btn btn-success border-dark mt-2" (click)="onSignup()" [disabled]="signupForm.invalid">Inscription</button>
+    </form>
+    <p>{{ errorMessage }}</p>
+    <p>Déja un compte? Connectez-vous <a class="text-light" routerLink="../login">ici</a></p>
+  </div>
+  
+  

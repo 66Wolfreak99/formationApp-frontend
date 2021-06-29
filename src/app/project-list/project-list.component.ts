@@ -22,8 +22,11 @@ export class ProjectListComponent implements OnInit, OnDestroy {
         this.projects = projects;
       }
     );
-    //this.onSave(this.projects)
-    this.projectService.emitProject()
+    
+    this.projectService.getStuff()
+    this.projectService.emitProject();
+    
+    console.log("Heyyy "+ this.projects[2]);
   }
 
   onSave(projects: Project[],){
@@ -54,7 +57,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   }
 
   onCompleteTask(index, taskIndex){
-    this.projectService.completeTask(index, taskIndex) 
+    this.projectService.completeTask(index, taskIndex)  
 
     
   }
